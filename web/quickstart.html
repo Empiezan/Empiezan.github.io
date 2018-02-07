@@ -159,7 +159,7 @@ BEFORE RUNNING:
         <!--</a>-->
     <!--</div>-->
     <div>
-        <video id="preview" width="450px"></video>
+        <video id="preview" width="100%"></video>
     </div>
         <script type="text/javascript">
             let scanner = new Instascan.Scanner({
@@ -176,7 +176,13 @@ BEFORE RUNNING:
             });
             Instascan.Camera.getCameras().then(function (cameras) {
                 if (cameras.length > 0) {
-                    scanner.start(cameras[1]);
+                    if( screen.width <= 480 ) {
+                        // is mobile..
+                        scanner.start(cameras[1]);
+                    }
+                    else {
+                        scanner.start(cameras[0]);
+                    }
                 } else {
                     console.error('No cameras found.');
                 }
