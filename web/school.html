@@ -1,0 +1,279 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- Meta tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Classic Enquiry Form Responsive Widget, Audio and Video players, Login Form Web Template, Flat Pricing Tables, Flat Drop-Downs, Sign-Up Web Templates, Flat Web Templates, Login Sign-up Responsive Web Template, Smartphone Compatible Web Template, Free Web Designs for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design"
+    />
+    <script type="application/x-javascript">
+        addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
+    </script>
+    <!-- Meta tags -->
+    <!--stylesheets-->
+    <link href="css/style.css" rel='stylesheet' type='text/css' media="all">
+    <!--//style sheet end here-->
+    <!-- font-awesome icons-agile -->
+    <link rel="stylesheet" href="css/font-awesome.min.css" />
+
+    <!-- //font-awesome icons-agile -->
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            color: white;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+        /*tr:nth-child(even) {background-color: #f2f2f2;}*/
+
+    </style>
+</head>
+<body>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--
+BEFORE RUNNING:
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+---------------
+1. If not already done, enable the Google Sheets API
+   and check the quota for your project at
+   https://console.developers.google.com/apis/api/sheets
+2. Get access keys for your application. See
+   https://developers.google.com/api-client-library/javascript/start/start-js#get-access-keys-for-your-application
+3. For additional information on authentication, see
+   https://developers.google.com/sheets/api/quickstart/js#step_2_set_up_the_sample
+-->
+<script>
+    var dict = new Object();
+    function populateDict() {
+         dict = {
+             "Individual Exam": '1R0eKhhC3YMptbfDYWKf_Gv9FzlJC-ms8c_k1telL4Zc',
+             "Topics Exam": '12A5emA5i8z3rcDXPjbXa8LTJ3fYge3yCgSEBb0VkYoM'
+        };
+    }
+
+    // function appendPre(message) {
+    //     var pre = document.getElementById('content');
+    //     var textContent = document.createTextNode(message + '\n');
+    //     pre.appendChild(textContent);
+    // }
+
+    function makeApiCall() {
+        // var pre = document.getElementById('content');
+        // while (pre.firstChild) {
+        //     pre.removeChild(pre.firstChild);
+        // }
+        var t = document.getElementById("test");
+        var tT = t.options[t.selectedIndex].text;
+        var s = document.getElementById("school");
+        var sS = s.options[s.selectedIndex].text;
+        gapi.client.sheets.spreadsheets.values.get({
+            spreadsheetId: dict[tT],
+            range: 'A2:C',
+        }).then(function(response) {
+            var range = response.result;
+            var schools = document.getElementsByClassName("sk");
+
+            for (var i = 0; i < schools.length; ++i){
+                var schoolText = document.createTextNode(sS);
+                if (schools[i].hasChildNodes()) schools[i].removeChild(schools[i].firstChild);
+                schools[i].appendChild(schoolText);
+            }
+            var studCnt = 1;
+            var qCnt = 1;
+            if (range.values.length > 0) {
+                // appendPre('School, ID, Score:');
+                for (var i = 0; i < range.values.length; i++) {
+                    var row = range.values[i];
+                    // Print columns A,B, and C, which correspond to indices 0, 1, and 2.
+                    if (row[0] == sS) {
+                        // appendPre(row[0] + ', ' + row[1] + ', ' + row[2]);
+                        var student = document.getElementById('s' + studCnt);
+                        var studentText = document.createTextNode(row[1]);
+                        console.log(studCnt);
+                        if (student.hasChildNodes()) student.removeChild(student.firstChild);
+                        student.appendChild(studentText);
+                        var score = document.getElementById('s' + studCnt + 'q' + qCnt );
+                        if (score.hasChildNodes()) score.removeChild(score.firstChild);
+                        var scoreText = document.createTextNode(row[2]);
+                        score.appendChild(scoreText);
+                        studCnt = studCnt + 1;
+                    }
+                    if (studCnt == 7) break;
+                }
+            } else {
+                appendPre('No data found.');
+            }
+        }, function(response) {
+            appendPre('Error: ' + response.result.error.message);
+        });
+    }
+
+    function initClient() {
+        populateDict();
+        var API_KEY = 'AIzaSyD9hb2yjF37X2pdzd41A_mvVStoblrrn1c';  // TODO: Update placeholder with desired API key.
+
+        var CLIENT_ID = '88164074114-62uqovcn20dug205olv6e44vbt7e4mi1.apps.googleusercontent.com';  // TODO: Update placeholder with desired client ID.
+
+        // TODO: Authorize using one of the following scopes:
+        //   'https://www.googleapis.com/auth/drive'
+        //   'https://www.googleapis.com/auth/drive.file'
+        //   'https://www.googleapis.com/auth/spreadsheets'
+        var SCOPE = 'https://www.googleapis.com/auth/spreadsheets';
+
+        gapi.client.init({
+            'apiKey': API_KEY,
+            'clientId': CLIENT_ID,
+            'scope': SCOPE,
+            'discoveryDocs': ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
+        }).then(function() {
+            gapi.auth2.getAuthInstance().isSignedIn.listen(updateSignInStatus);
+            updateSignInStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+        });
+    }
+
+    function handleClientLoad() {
+        gapi.load('client:auth2', initClient);
+    }
+
+    function updateSignInStatus(isSignedIn) {
+        if (isSignedIn) {
+
+        }
+    }
+
+    function handleSignInClick(event) {
+        gapi.auth2.getAuthInstance().signIn();
+    }
+
+    function handleSignOutClick(event) {
+        gapi.auth2.getAuthInstance().signOut();
+    }
+</script>
+
+<h1 class="header-w3ls">
+    Grading </h1>
+<div class="appointment-w3">
+    <link src="/quickstart.html"> Input Grades </link>
+    <form action="javascript:makeApiCall();">
+        <div class="line-w3ls"> </div>
+        <div class="login-w3ls">
+            <div class="icons-agile">
+                <span class="fa fa-sort-desc" aria-hidden="true"></span>
+                <select id="test" class="form-control buttom">
+                    <option value="">
+                        Select Exam Type</option>
+                    <option value="Individual">Individual Exam</option>
+                    <option value="Topics">Topics Exam</option>
+                </select>
+            </div>
+
+            <div class="icons-agile">
+                <span class="fa fa-sort-desc" aria-hidden="true"></span>
+                <select id="school" class="form-control buttom">
+                    <option value="">
+                        Select School</option>
+                    <option value="Carmel">Carmel High School</option>
+                    <option value="Hinsdale">Hinsdale Central High School</option>
+                    <option value="Lexington">Lexington High School</option>
+
+                </select>
+            </div>
+
+            <pre id="content"></pre>
+            <div style="overflow-x:auto;">
+                <table>
+                    <tr>
+                        <th> School Name </th>
+                        <th> Student ID </th>
+                        <th> Score </th>
+                    </tr>
+                    <tr>
+                        <td class="sk">  </td>
+                        <td id="s1"> </td>
+                        <td id="s1q1"> </td>
+                    </tr>
+                    <tr>
+                        <td class="sk">  </td>
+                        <td id="s2"> </td>
+                        <td id="s2q1"> </td>
+                    </tr>
+                    <tr>
+                        <td class="sk">  </td>
+                        <td id="s3"> </td>
+                        <td id="s3q1"> </td>
+                    </tr>
+                    <tr>
+                        <td class="sk">  </td>
+                        <td id="s4"> </td>
+                        <td id="s4q1"> </td>
+                    </tr>
+                    <tr>
+                        <td class="sk">  </td>
+                        <td id="s5"> </td>
+                        <td id="s5q1"> </td>
+                    </tr>
+                    <tr>
+                        <td class="sk">  </td>
+                        <td id="s6"> </td>
+                        <td id="s6q1"> </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="btnn">
+                <input type="submit" value="Submit">
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="copy">
+    <p>&copy;2017 Classic Enquiry Form. All Rights Reserved | Design by <a href="http://www.W3Layouts.com" target="_blank">W3Layouts</a></p>
+</div>
+<script type='text/javascript' src='js/jquery-2.2.3.min.js'></script>
+<script>
+    $('#chooseFile').bind('change', function () {
+        var filename = $("#chooseFile").val();
+        if (/^\s*$/.test(filename)) {
+            $(".file-upload").removeClass('active');
+            $("#noFile").text("No file chosen...");
+        }
+        else {
+            $(".file-upload").addClass('active');
+            $("#noFile").text(filename.replace("C:\\fakepath\\", ""));
+        }
+    });
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-23581568-13');
+</script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-23581568-13');
+</script>
+<script async defer src="https://apis.google.com/js/api.js"
+        onload="this.onload=function(){};handleClientLoad()"
+        onreadystatechange="if (this.readyState === 'complete') this.onload()">
+</script>
+</body>
+</html>
