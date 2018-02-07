@@ -1,25 +1,91 @@
 <!DOCTYPE html>
 <head>
-    <meta charset="utf-8"/>
-    <title>My Web Page</title>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Michael Chang</title>
     <style type="text/css">
         body{
-            width: 760px; /* how wide to make your web page */
-            background-color: teal; /* what color to make the background */
-            margin: 0 auto;
-            padding: 0;
-            font:12px/16px Verdana, sans-serif; /* default font */
+            text-align: center;
+            /*width: 760px; !* how wide to make your web page *!*/
+            /*background-color: teal; !* what color to make the background *!*/
+            /*margin: 0 auto;*/
+            /*padding: 0;*/
+            /*font:12px/16px Verdana, sans-serif; !* default font *!*/
         }
         div#main{
-            background-color: #FFF;
-            margin: 0;
-            padding: 10px;
+            /*background-color: #FFF;*/
+            /*margin: 0;*/
+            /*padding: 10px;*/
+        }
+        div#profile{
+            text-align: center;
+        }
+        #selfie {
+            width: 13%;
+        }
+        h1.name {
+            font-family: 'Roboto', sans-serif;
+            font-size: 250%;
+            text-align: center;
+        }
+        div.soIc {
+            display: inline-block;
+            padding: 8px;
+            color: black;
+        }
+        div.info {
+            display: inline-block;
+            padding: 35px;
+            color: black;
         }
     </style>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Add icon library -->
+    <script defer src="fontawesome-all.js"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
 <body><div id="main">
 
     <!-- CONTENT HERE -->
-<img width="100" src="profile_photo.png">
+    <br><br><br><br><br><br>
+    <div id="profile">
+        <span class="helper"></span>
+        <a href="/about.html">
+            <img class="img-rounded" id="selfie" src="profile_photo.png">
+        </a>
+    </div>
+    <h1 class="name"> <b> Michael Chang </b> </h1>
+    <div id="social">
+        <a href="https://github.com/Empiezan"><div class="soIc"> <i class="fab fa-github-square fa-2x"></i> </div></a>
+        <a href="https://www.linkedin.com/in/michael-chang-9b67a5105/"><div class="soIc"> <i class="fab fa-linkedin-in fa-2x"></i> </div></a>
+        <a href="https://www.facebook.com/michael.chang.12532"><div class="soIc"> <i class="fab fa-facebook-f fa-2x"></i> </div></a>
+        <a href="https://twitter.com/introvertibled"><div class="soIc"> <i class="fab fa-twitter fa-2x"></i> </div></a>
+        <a href="mailto:michaelchang90@gmail.com"><div class="soIc"> <i class="fab fa-telegram fa-2x" ></i> </div></a>
+    </div>
+    <div>
+        <a href="https://github.com/Empiezan">
+            <div class="info">
+                <h4> Projects </h4>
+            </div>
+        </a>
+        <a href="https://github.com/Empiezan">
+            <div class="info">
+                <h4> About </h4>
+            </div>
+        </a>
+        <a href="/Resume.pdf">
+            <div class="info">
+                <h4> Resume </h4>
+            </div>
+        </a>
+    </div>
 </div></body>
 </html>
