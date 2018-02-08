@@ -170,9 +170,9 @@ BEFORE RUNNING:
             });
             scanner.addListener('scan', function (content) {
                 console.log(content);
-                // if (scanner.scan() != null) {
+                if (scanner.scan() != null) {
                     document.getElementById("test").value = content;
-                // }
+                }
             });
             Instascan.Camera.getCameras().then(function (cameras) {
                 if (cameras.length > 0) {
