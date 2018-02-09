@@ -3,8 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <title>Projects</title>
+
+    <style>
+        .card-body{
+            padding: 5%;
+        }
+        .card {
+            vertical-align: top;
+            margin: 0 auto;
+            display: inline-block;
+        }
+        .flex-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+        }
+    </style>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Latest compiled JavaScript -->
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 <body>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Projects</li>
+    </ol>
+</nav>
+
+<h1>
+    <b>
+        Projects
+    </b>
+</h1>
+<br>
+<div class="flex-container">
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="WUCT%20Logo.PNG" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">WUCT Grading Tool</h5>
+                    <p class="card-text">
+                        A cool little app that works with the Google Sheets API and Instascan QR scanner
+                        to help WUCT volunteers input grades for the hundreds of chemistry exams that
+                        we receive on competition day.
+                    </p>
+                    <a href="./web/grading.html" class="btn btn-primary">Check it out!</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="WUCT%20Logo.PNG" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Breaking Bonds Scoring</h5>
+                    <p class="card-text">
+                        An app for WUCT proctors to perform live scoring for the Breaking Bonds round of the WUCT competition.
+                    </p>
+                    <br><br>
+                    <a href="#" class="btn btn-primary">Check it out!</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--<div class="card" style="width: 18rem;">-->
+        <!--<img class="card-img-top" src="WUCT%20Logo.PNG" alt="Card image cap">-->
+        <!--<div class="card-body">-->
+            <!--<h5 class="card-title"></h5>-->
+            <!--<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+            <!--<a href="#" class="btn btn-primary">Check it out!</a>-->
+        <!--</div>-->
+    <!--</div>-->
+</div>
+
 
 </body>
 </html>

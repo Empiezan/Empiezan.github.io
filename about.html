@@ -36,27 +36,21 @@
             width: 400px;
             font-size: medium;
         }
-        div#nav{
-            font-size: large;
+        nav{
+            font-size: medium;
         }
     </style>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
 <body>
 
-<br><br><br>
-<div id="nav">
-    <a href="/">
-        Home
-    </a>
-    <a href="https://github.com/Empiezan">
-        Projects
-    </a>
-    <a href="Resume.pdf">
-        Resume
-    </a>
-</div>
-<br><br>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">About</li>
+    </ol>
+</nav>
+
 <div id="profile">
     <span class="helper"></span>
     <img class="img-rounded" id="selfie" src="profile_photo.png">

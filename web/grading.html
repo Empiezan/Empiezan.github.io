@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8"/>
+    <title>WUCT Grading</title>
+    <style type="text/css">
+        body{
+            text-align: center;
+            /*width: 760px; !* how wide to make your web page *!*/
+            /*background-color: white; !* what color to make the background *!*/
+            /*margin: 0 auto;*/
+            /*padding: 0;*/
+            /*font-family: 'Roboto', sans-serif; !* default font *!*/
+        }
+
+        div#selfie{
+            width: 40vw;
+            float: left;
+            /*padding-left: 5%;*/
+            /*padding: 10px;*/
+            /*width: 25%;*/
+            /*float:left;*/
+        }
+        div {
+
+        }
+        .form-group{
+            float: right;
+            padding: 2%
+        }
+        .flex-container{
+            display: flex;
+            /*flex-direction: row;*/
+            background-color: dimgray;
+            margin: 0 auto;
+            /*float:right;*/
+            width: 55.5vw;
+            height: 32.75vw;
+            padding: 10px;
+        }
+
+    </style>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <script type="text/javascript" src="instascan.min.js"></script>
+    <script type="text/javascript" src="spreadsheet.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $("button").click(function(){
+                makeApiCall();
+            });
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <h1><b>Grading Form</b></h1>
+    </div>
+    <div class="flex-container">
+        <div class="input-group" id="selfie">
+            <video id="preview"></video>
+        </div>
+        <script type="text/javascript">
+            let scanner = new Instascan.Scanner({
+                video: document.getElementById('preview'),
+                continuous: true,
+                mirror: true,
+                refractoryPeriod: 500
+            });
+            scanner.addListener('scan', function (content) {
+                console.log(content);
+                if (scanner.scan() != null) {
+                    document.getElementById("test").value = content;
+                }
+            });
+            Instascan.Camera.getCameras().then(function (cameras) {
+                if (cameras.length > 0) {
+                    if(cameras[1]) {
+                        scanner.start(cameras[1]);
+                    } else {
+                        scanner.start(cameras[0]);
+                    }
+                } else {
+                    console.error('No cameras found.');
+                }
+            }).catch(function (e) {
+                console.error(e);
+            });
+        </script>
+
+        <div class="form-group">
+            <label>Test Type:</label>
+            <form>
+                <select id="test" class="form-control buttom">
+                    <option value="">Select Exam Type</option>
+                    <option value="Individual">Individual Exam</option>
+                    <option value="Topics">Topics Exam</option>
+                </select>
+                <br>
+                <label>Student ID:</label>
+                <input type="text" class="form-control" id="sID" placeholder="Student ID"/>
+                <br>
+                <label>Score:</label>
+                <input type="text" class="form-control" id="q1" placeholder="Score"/>
+                <br>
+                <button class="btn btn-secondary" type="button" class="next">Submit</button>
+            </form>
+        </div>
+
+        <script type='text/javascript' src='js/jquery-2.2.3.min.js'></script>
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-23581568-13');
+        </script>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-23581568-13');
+        </script>
+        <script async defer src="https://apis.google.com/js/api.js"
+            onload="this.onload=function(){};handleClientLoad()"
+            onreadystatechange="if (this.readyState === 'complete') this.onload()">
+        </script>
+    </div>
+</body>
+</html>
