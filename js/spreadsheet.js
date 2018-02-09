@@ -77,12 +77,6 @@ function handleSignoutClick(event) {
     gapi.auth2.getAuthInstance().signOut();
 }
 
-function makeApiCall() {
-    var e = document.getElementById("test");
-    var t = e.options[e.selectedIndex].text;
-    findStudent(t);
-}
-
 function findStudent (t) {
     var studentIndex;
     var sID = document.getElementById("sID").value;
@@ -135,6 +129,12 @@ function updateCell(sheetId, studentIndex) {
     }, function(reason) {
         console.error('error: ' + reason.result.error.message);
     });
+}
+
+function makeApiCall() {
+    var e = document.getElementById("test");
+    var t = e.options[e.selectedIndex].text;
+    findStudent(t);
 }
 
 function initClient() {
