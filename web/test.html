@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8"/>
+    <title>My Web Page</title>
+    <style type="text/css">
+        body{
+            width: 760px; /* how wide to make your web page */
+            background-color: teal; /* what color to make the background */
+            margin: 0 auto;
+            padding: 0;
+            font:12px/16px Verdana, sans-serif; /* default font */
+        }
+        div#main{
+            background-color: #FFF;
+            margin: 0;
+            padding: 10px;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+</head>
+<body><div id="main">
+
+    <!-- CONTENT HERE -->
+    <script>
+        var GoogleAuth;
+        var SCOPE = 'https://www.googleapis.com/auth/spreadsheets';
+        function handleClientLoad() {
+            // Load the API's client and auth2 modules.
+            // Call the initClient function after the modules load.
+            gapi.load('client:auth2', initClient);
+        }
+
+        function initClient() {
+            // Retrieve the discovery document for version 3 of Google Drive API.
+            // In practice, your app can retrieve one or more discovery documents.
+            var discoveryUrl = 'https://sheets.googleapis.com/$discovery/rest?version=v4';
+
+            // Initialize the gapi.client object, which app uses to make API requests.
+            // Get API key and client ID from API Console.
+            // 'scope' field specifies space-delimited list of access scopes.
+            gapi.client.init({
+                'apiKey': 'AIzaSyD9hb2yjF37X2pdzd41A_mvVStoblrrn1c',
+                'discoveryDocs': [discoveryUrl],
+                'clientId': '88164074114-62uqovcn20dug205olv6e44vbt7e4mi1.apps.googleusercontent.com',
+                'scope': SCOPE
+            }).then(function () {
+                GoogleAuth = gapi.auth2.getAuthInstance();
+
+                // Listen for sign-in state changes.
+                GoogleAuth.isSignedIn.listen(updateSigninStatus);
+
+                // Handle initial sign-in state. (Determine if user is already signed in.)
+                var user = GoogleAuth.currentUser.get();
+                setSigninStatus();
+
+                // Call handleAuthClick function when user clicks on
+                //      "Sign In/Authorize" button.
+                $('#sign-in-or-out-button').click(function() {
+                    handleAuthClick();
+                });
+                $('#revoke-access-button').click(function() {
+                    revokeAccess();
+                });
+            });
+        }
+
+        function handleAuthClick() {
+            if (GoogleAuth.isSignedIn.get()) {
+                // User is authorized and has clicked 'Sign out' button.
+                GoogleAuth.signOut();
+            } else {
+                // User is not signed in. Start Google auth flow.
+                GoogleAuth.signIn();
+            }
+        }
+
+        function revokeAccess() {
+            GoogleAuth.disconnect();
+        }
+
+        function makeApiCall() {
+            var dict = {
+                "Individual Exam": '1R0eKhhC3YMptbfDYWKf_Gv9FzlJC-ms8c_k1telL4Zc',
+                "Topics Exam": '12A5emA5i8z3rcDXPjbXa8LTJ3fYge3yCgSEBb0VkYoM'
+            };
+            var e = document.getElementById("test");
+            var t = e.options[e.selectedIndex].text;
+            // findStudent(t);
+            var studentIndex;
+            var sID = document.getElementById("sID").value;
+            var sheetId = dict[t];
+            gapi.client.sheets.spreadsheets.values.get({
+                spreadsheetId: sheetId,
+                range: 'Sheet1!B:B'
+            }).then((response) => {
+                var result = response.result;
+            for (var i = 0; i < result.values.length; ++i) {
+                if (result.values[i] == sID) {
+                    studentIndex = i + 1;
+                    break;
+                }
+            }
+            var score = document.getElementById("q1").value;
+            var params = {
+                // The ID of the spreadsheet to update.
+                spreadsheetId: sheetId,  // TODO: Update placeholder value.
+
+                // The A1 notation of the values to update.
+                range: 'Sheet1!C' + studentIndex + ':C' + studentIndex,  // TODO: Update placeholder value.
+
+                // How the input data should be interpreted.
+                valueInputOption: 'RAW',  // TODO: Update placeholder value.
+            };
+
+            var valueRangeBody = {
+                "values": [
+                    [
+                        score
+                    ],
+                ]
+                // TODO: Add desired properties to the request body. All existing properties
+                // will be replaced.
+            };
+
+            var request = gapi.client.sheets.spreadsheets.values.update(params, valueRangeBody);
+            request.then(function(response) {
+                // TODO: Change code below to process the `response` object:
+                console.log(response.result);
+            }, function(reason) {
+                console.error('error: ' + reason.result.error.message);
+            });
+        });
+        }
+
+        function setSigninStatus(isSignedIn) {
+            var user = GoogleAuth.currentUser.get();
+            var isAuthorized = user.hasGrantedScopes(SCOPE);
+            if (isAuthorized) {
+                $('#sign-in-or-out-button').html('Sign out');
+                $('#revoke-access-button').css('display', 'inline-block');
+                $('#auth-status').html('You are currently signed in and have granted ' +
+                    'access to this app.');
+            } else {
+                $('#sign-in-or-out-button').html('Sign In/Authorize');
+                $('#revoke-access-button').css('display', 'none');
+                $('#auth-status').html('You have not authorized this app or you are ' +
+                    'signed out.');
+            }
+        }
+        $(document).ready(function() {
+            $("#submit").click(function() {
+                console.log("hello");
+                makeApiCall();
+            });
+        });
+
+        function updateSigninStatus(isSignedIn) {
+            setSigninStatus();
+        }
+    </script>
+
+    <button id="sign-in-or-out-button"
+            style="margin-left: 25px">Sign In/Authorize</button>
+    <button id="revoke-access-button"
+            style="display: none; margin-left: 25px">Revoke access</button>
+
+    <div id="auth-status" style="display: inline; padding-left: 25px"></div><hr>
+
+    <div class="form-group">
+        <!--<label>Test Type:</label>-->
+        <form>
+            <select id="test" class="form-control buttom">
+                <option value="">Select Exam Type</option>
+                <option value="Individual">Individual Exam</option>
+                <option value="Topics">Topics Exam</option>
+            </select>
+            <br>
+            <!--<label>Student ID:</label>-->
+            <input type="text" class="form-control" id="sID" placeholder="Student ID"/>
+            <br>
+            <!--<label>Score:</label>-->
+            <input type="text" class="form-control" id="q1" placeholder="Score"/>
+            <br>
+            <button class="btn btn-secondary" type="button" id="submit">Submit</button>
+        </form>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script async defer src="https://apis.google.com/js/api.js"
+            onload="this.onload=function(){};handleClientLoad()"
+            onreadystatechange="if (this.readyState === 'complete') this.onload()">
+    </script>
+</div></body>
+</html>
