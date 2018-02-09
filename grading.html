@@ -2,6 +2,8 @@
 <head>
     <meta charset="utf-8" content="width=device-width, initial-scale=1.0"/>
     <title>WUCT Grading</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <style type="text/css">
         body{
             text-align: center;
@@ -13,23 +15,33 @@
         }
 
         div#selfie{
-            max-width: 40%;
-            float: left;
-            /*padding-left: 5%;*/
-            /*padding: 10px;*/
-            /*width: 25%;*/
-            /*float:left;*/
+            min-width: 40%;
+            max-width: 100%;
+            margin: 0 auto;
         }
-        div {
 
+        video {
+            max-width: 95%;
+        }
+
+        div {
+            display: block;
         }
         .form-group{
-            float: right;
-            padding: 2%
+            /*float: right;*/
+            /*padding: 2%;*/
+            margin: 0 auto;
+            min-width: 40%;
+            max-width: 50%;
+        }
+        @media screen and (min-width: 400px) {
+            #selfie, .form-group {
+                width: 30%;
+                height: 30%;
+            }
         }
         .flex-container{
             display: flex;
-            /*flex-direction: row;*/
             background-color: dimgray;
             margin: 0 auto;
             /*float:right;*/
@@ -42,11 +54,6 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <script type="text/javascript" src="instascan.min.js"></script>
     <script type="text/javascript" src="spreadsheet.js"></script>
-    <script type="text/javascript" src="spreadsheet.js"> </script>
-
-    </script>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -63,13 +70,16 @@
     </script>
 </head>
 <body>
+    <button id="authorize-button" style="display: none;">Authorize</button>
+    <button id="signout-button" style="display: none;">Sign Out</button>
     <div>
-        <h1><b>Grading Form</b></h1>
-    </div>
-    <div class="flex-container">
+        <div>
+            <h1><b>Grading Form</b></h1>
+        </div>
         <div class="input-group" id="selfie">
             <video id="preview"></video>
         </div>
+
         <script type="text/javascript">
             let scanner = new Instascan.Scanner({
                 video: document.getElementById('preview'),
@@ -97,9 +107,9 @@
                 console.error(e);
             });
         </script>
-
+        <br>
         <div class="form-group">
-            <label>Test Type:</label>
+            <!--<label>Test Type:</label>-->
             <form>
                 <select id="test" class="form-control buttom">
                     <option value="">Select Exam Type</option>
@@ -107,17 +117,21 @@
                     <option value="Topics">Topics Exam</option>
                 </select>
                 <br>
-                <label>Student ID:</label>
+                <!--<label>Student ID:</label>-->
                 <input type="text" class="form-control" id="sID" placeholder="Student ID"/>
                 <br>
-                <label>Score:</label>
+                <!--<label>Score:</label>-->
                 <input type="text" class="form-control" id="q1" placeholder="Score"/>
                 <br>
                 <button class="btn btn-secondary" type="button" class="next">Submit</button>
             </form>
         </div>
+    </div>
 
-        <script type='text/javascript' src='js/jquery-2.2.3.min.js'></script>
+
+
+
+        <!--<script type='text/javascript' src='js/jquery-2.2.3.min.js'></script>-->
 
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
@@ -142,7 +156,6 @@
             onreadystatechange="if (this.readyState === 'complete') this.onload()">
         </script>
     </div>
-    <button id="authorize-button" style="display: none;">Authorize</button>
-    <button id="signout-button" style="display: none;">Sign Out</button>
+
 </body>
 </html>
