@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
     <title>About</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -16,7 +16,9 @@
             text-align: center;
         }
         #selfie {
-            width: 13%;
+            max-width: 55%;
+            margin: 0 auto;
+            box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
         }
         h2 {
             font-family: 'Roboto', sans-serif;
@@ -24,20 +26,31 @@
         div#summary {
             text-align: left;
             margin: 0 auto;
-            width: 400px;
+            min-width: 40%;
+            max-width: 90%;
             font-size: medium;
         }
         b{
-            font-size: medium;
+            /*font-size: medium;*/
         }
         div#resumeInfo {
             text-align: left;
             margin: 0 auto;
-            width: 400px;
+            min-width: 40%;
+            max-width: 90%;
             font-size: medium;
+        }
+        @media screen and (min-width: 600px) {
+            #resumeInfo, #summary {
+                width: 40%;
+            }
         }
         nav{
             font-size: medium;
+            text-align: center;
+        }
+        .card {
+            text-align: left;
         }
     </style>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
@@ -51,18 +64,17 @@
     </ol>
 </nav>
 
+
 <div id="profile">
     <span class="helper"></span>
     <img class="img-rounded" id="selfie" src="profile_photo.png">
 </div>
 <div>
-    <h1>Michael Chang</h1>
+    <h2>Michael Chang</h2>
 </div>
-
 <div id="heading">
     <h4>Who am I?</h4>
 </div>
-
 <div id="summary">
     <b>I am a software engineer driven by desire to develop software that helps my peers
         or does cool things.</b>
@@ -75,47 +87,112 @@
     Bonds exam and facilitate the grading of the Individual, Topics, and Team exams. Check
     out my latest project on <a href="https://github.com/Empiezan">Github</a>!
 </div>
+
+
 <br>
 <div id="resumeInfo">
-    <b>Employment</b>
-    <ul>
-        <li>Teaching Assistant @ Washington University in St. Louis </li>
-        <li>Programming Intern @ CFE Media</li>
-        <li>Technical Support Analyst @ Washington University School of Medicine</li>
-    </ul>
-    <b>Education</b>
-    <ul>
-        <li>BS Computer Science, Washington University in St. Louis (2019)</li>
-    </ul>
-    <b>Skills</b>
-    <b>Programming Languages</b>
-    <ul>
-        <li>Java</li>
-        <li>C++</li>
-        <li>JavaScript</li>
-        <li>PHP</li>
-    </ul>
-    <b>Web & JavaScript Frameworks/Libraries</b>
-    <ul>
-        <li>HTML5</li>
-        <li>CSS3 + Bootstrap</li>
-        <li>Django</li>
-        <li>Angular 2</li>
-        <li>Socket.IO</li>
-    </ul>
-    <b>Databases</b>
-    <ul>
-        <li>SQL: MySQL</li>
-        <li>NoSQL: </li>
-    </ul>
-    <b>DevOps</b>
-    <ul>
-        <li>LAMP (Apache)</li>
-        <li>Node.js</li>
-        <li>Linux</li>
-        <li>Bash</li>
-        <li>AWS</li>
-    </ul>
+    <p>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#em" aria-expanded="true" aria-controls="em">
+            Employment
+        </button>
+    </p>
+    <div class="collapse in" id="em">
+        <div class="card card-block">
+            <ul class="list-group">
+                <li class="list-group-item">Teaching Assistant @ Washington University in St. Louis</li>
+                <li class="list-group-item">Programming Intern @ CFE Media</li>
+                <li class="list-group-item">Technical Support Analyst @ Washington University School of Medicine</li>
+            </ul>
+        </div>
+    </div>
+
+    <p>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#ed" aria-expanded="true" aria-controls="ed">
+            Education
+        </button>
+    </p>
+    <div class="collapse in" id="ed">
+        <div class="card card-block">
+            <ul class="list-group">
+                <li class="list-group-item">BS Computer Science, Washington University in St. Louis (2019)</li>
+                <li class="list-group-item">Hinsdale Central High School (2015)</li>
+            </ul>
+        </div>
+    </div>
+
+    <!--<h3><b>Skills</b></h3>-->
+
+    <p>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#pr" aria-expanded="true" aria-controls="pr">
+            Programming Languages
+        </button>
+    </p>
+    <div class="collapse in" id="pr">
+        <div class="card card-block">
+            <ul class="list-group">
+                <li class="list-group-item">Java</li>
+                <li class="list-group-item">C++</li>
+                <li class="list-group-item">JavaScript</li>
+                <li class="list-group-item">PHP</li>
+            </ul>
+        </div>
+    </div>
+
+    <p>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#we" aria-expanded="true" aria-controls="we">
+            Web & JavaScript Frameworks/Libraries
+        </button>
+    </p>
+    <div class="collapse in" id="we">
+        <div class="card card-block">
+            <ul class="list-group">
+                <li class="list-group-item">HTML5</li>
+                <li class="list-group-item">CSS3 + Bootstrap</li>
+                <li class="list-group-item">Django</li>
+                <li class="list-group-item">Angular 2</li>
+                <li class="list-group-item">Socket.IO</li>
+            </ul>
+        </div>
+    </div>
+
+    <p>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#da" aria-expanded="true" aria-controls="da">
+            Databases
+        </button>
+    </p>
+    <div class="collapse in" id="da">
+        <div class="card card-block">
+            <ul class="list-group">
+                <li class="list-group-item">SQL: MySQL</li>
+                <li class="list-group-item">NoSQL: MongoDB (In Progress)</li>
+            </ul>
+        </div>
+    </div>
+
+    <p>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#de" aria-expanded="true" aria-controls="de">
+            DevOps
+        </button>
+    </p>
+    <div class="collapse in" id="de">
+        <div class="card card-block">
+            <ul class="list-group">
+                <li class="list-group-item">LAMP (Apache)</li>
+                <li class="list-group-item">Node.js</li>
+                <li class="list-group-item">Linux</li>
+                <li class="list-group-item">Bash</li>
+                <li class="list-group-item">AWS</li>
+            </ul>
+        </div>
+    </div>
 </div>
+
+
+
+
+
+
+<br>
+
 </body>
 </html>
