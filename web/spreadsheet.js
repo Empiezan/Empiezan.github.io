@@ -111,3 +111,11 @@ function initClient() {
 function handleClientLoad() {
     gapi.load('client:auth2', initClient);
 }
+
+function handleSignInClick(event) {
+    gapi.auth2.getAuthInstance().signIn();
+}
+
+function handleSignOutClick(event) {
+    gapi.auth2.getAuthInstance().signOut();
+}
