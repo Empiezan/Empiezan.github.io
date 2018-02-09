@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e40ca20e-4ba6-48e0-bf50-fd2a0f54fdf6" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/web/spreadsheet.js" afterPath="$PROJECT_DIR$/web/spreadsheet.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -47,11 +46,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="quickstart.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="quickstart.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/quickstart.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3000">
-              <caret line="125" column="8" lean-forward="false" selection-start-line="125" selection-start-column="8" selection-end-line="131" selection-end-column="9" />
+            <state relative-caret-position="288">
+              <caret line="24" column="8" lean-forward="false" selection-start-line="24" selection-start-column="8" selection-end-line="131" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -67,11 +66,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="spreadsheet.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="spreadsheet.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/spreadsheet.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2880">
-              <caret line="120" column="1" lean-forward="false" selection-start-line="120" selection-start-column="1" selection-end-line="120" selection-end-column="1" />
+            <state relative-caret-position="2311">
+              <caret line="107" column="1" lean-forward="false" selection-start-line="107" selection-start-column="1" selection-end-line="107" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -305,12 +304,12 @@
       <workItem from="1518123745031" duration="3069000" />
       <workItem from="1518127690528" duration="4547000" />
       <workItem from="1518133051895" duration="2591000" />
-      <workItem from="1518136676242" duration="5088000" />
+      <workItem from="1518136676242" duration="5208000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30533000" />
+    <option name="totallyTimeSpent" value="30653000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -507,14 +506,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/spreadsheet.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2880">
-          <caret line="120" column="1" lean-forward="false" selection-start-line="120" selection-start-column="1" selection-end-line="120" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/grading.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -525,8 +516,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/quickstart.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3000">
-          <caret line="125" column="8" lean-forward="false" selection-start-line="125" selection-start-column="8" selection-end-line="131" selection-end-column="9" />
+        <state relative-caret-position="288">
+          <caret line="24" column="8" lean-forward="false" selection-start-line="24" selection-start-column="8" selection-end-line="131" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/spreadsheet.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2311">
+          <caret line="107" column="1" lean-forward="false" selection-start-line="107" selection-start-column="1" selection-end-line="107" selection-end-column="1" />
           <folding />
         </state>
       </provider>

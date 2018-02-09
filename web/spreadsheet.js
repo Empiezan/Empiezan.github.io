@@ -9,17 +9,11 @@ function populateDict() {
 function makeApiCall() {
     var e = document.getElementById("test");
     var t = e.options[e.selectedIndex].text;
-    if (t == "") {
-        return;
-    }
     findStudent(t);
 }
 
 function findStudent (t) {
     var studentIndex;
-    if (document.getElementById("sID").value == null) {
-        return;
-    }
     var sID = document.getElementById("sID").value;
     // console.log(t);
     var sheetId = dict[t];
@@ -35,14 +29,12 @@ function findStudent (t) {
             break;
         }
     }
+    console.log(studentIndex);
     updateCell(sheetId, studentIndex);
 });
 }
 
 function updateCell(sheetId, studentIndex) {
-    if (document.getElementById("q1").value == null) {
-        return;
-    }
     var score = document.getElementById("q1").value;
     var params = {
         // The ID of the spreadsheet to update.
@@ -74,16 +66,6 @@ function updateCell(sheetId, studentIndex) {
     });
 }
 
-/**
- *  Called when the signed in status changes, to update the UI
- *  appropriately. After a sign-in, the API is called.
- */
-function updateSignInStatus(isSignedIn) {
-    if (isSignedIn) {
-
-    }
-}
-
 function initClient() {
     populateDict();
     var API_KEY = 'AIzaSyD9hb2yjF37X2pdzd41A_mvVStoblrrn1c';  // TODO: Update placeholder with desired API key.
@@ -107,9 +89,14 @@ function initClient() {
     });
 }
 
-
 function handleClientLoad() {
     gapi.load('client:auth2', initClient);
+}
+
+function updateSignInStatus(isSignedIn) {
+    if (isSignedIn) {
+
+    }
 }
 
 function handleSignInClick(event) {
