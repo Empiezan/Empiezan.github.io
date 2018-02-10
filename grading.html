@@ -188,12 +188,15 @@
                     'signed out.');
             }
         }
+
         $(document).ready(function() {
             $("#submit").click(function() {
-                console.log("hello");
+                // console.log("hello");
                 makeApiCall();
             });
         });
+
+
 
         function updateSigninStatus(isSignedIn) {
             setSigninStatus();
@@ -241,23 +244,31 @@
             }).catch(function (e) {
                 console.error(e);
             });
+
+            $(document).ready(function() {
+                $("#next").click(function() {
+                    scanner.stop();
+
+                });
+            });
         </script>
         <br>
         <div class="form-group">
             <!--<label>Test Type:</label>-->
             <form>
-                <select id="test" class="form-control buttom">
+                <select id="testType" class="form-control buttom">
                     <option value="">Select Exam Type</option>
                     <option value="Individual">Individual Exam</option>
                     <option value="Topics">Topics Exam</option>
                 </select>
                 <br>
-                <!--<label>Student ID:</label>-->
-                <input type="text" class="form-control" id="sID" placeholder="Student ID"/>
+                <input type="text" class="form-control" id="testID" placeholder="Test ID" />
+                <!--<input type="text" class="form-control" id="sID" placeholder="Student ID"/>-->
+                <!--<br>-->
+                <!--<input type="text" class="form-control" id="q1" placeholder="Score"/>-->
                 <br>
-                <!--<label>Score:</label>-->
-                <input type="text" class="form-control" id="q1" placeholder="Score"/>
-                <br>
+                <input type="file" accept="image/*" capture="camera" id="score">
+                <button class="btn btn-secondary" type="button" id="next">Next</button>
                 <button class="btn btn-secondary" type="button" id="submit">Submit</button>
             </form>
         </div>
