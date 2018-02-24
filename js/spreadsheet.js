@@ -9,7 +9,7 @@ function handleClientLoad() {
 function initClient() {
     // Retrieve the discovery document for version 3 of Google Drive API.
     // In practice, your app can retrieve one or more discovery documents.
-    var discoveryUrl = 'https://www.googleapis.com/discovery/v1/apis/drive/v3/rest';
+    var discoveryUrl = 'https://sheets.googleapis.com/$discovery/rest?version=v4';
 
     // Initialize the gapi.client object, which app uses to make API requests.
     // Get API key and client ID from API Console.
@@ -54,40 +54,21 @@ function revokeAccess() {
     GoogleAuth.disconnect();
 }
 
-function setSigninStatus(isSignedIn) {
-    var user = GoogleAuth.currentUser.get();
-    var isAuthorized = user.hasGrantedScopes(SCOPE);
-    if (isAuthorized) {
-        $('#sign-in-or-out-button').html('Sign out');
-        $('#revoke-access-button').css('display', 'inline-block');
-        $('#auth-status').html('You are currently signed in and have granted ' +
-            'access to this app.');
-    } else {
-        $('#sign-in-or-out-button').html('Sign In/Authorize');
-        $('#revoke-access-button').css('display', 'none');
-        $('#auth-status').html('You have not authorized this app or you are ' +
-            'signed out.');
-    }
-}
-
-function updateSigninStatus(isSignedIn) {
-    setSigninStatus();
-}
-
 function makeApiCall() {
     var dict = {
-        "Individual Exam": '1R0eKhhC3YMptbfDYWKf_Gv9FzlJC-ms8c_k1telL4Zc',
-        "Topics Exam": '12A5emA5i8z3rcDXPjbXa8LTJ3fYge3yCgSEBb0VkYoM'
+        "IND": '1R0eKhhC3YMptbfDYWKf_Gv9FzlJC-ms8c_k1telL4Zc',
+        "ENV": '12A5emA5i8z3rcDXPjbXa8LTJ3fYge3yCgSEBb0VkYoM',
+        "HUM": '12A5emA5i8z3rcDXPjbXa8LTJ3fYge3yCgSEBb0VkYoM',
+        "COO": '12A5emA5i8z3rcDXPjbXa8LTJ3fYge3yCgSEBb0VkYoM',
+        "TEA": '12A5emA5i8z3rcDXPjbXa8LTJ3fYge3yCgSEBb0VkYoM'
     };
-    var e = document.getElementById("test");
-    var t = e.options[e.selectedIndex].text;
-    // findStudent(t);
-    var studentIndex;
-    var sID = document.getElementById("sID").value;
-    var sheetId = dict[t];
+    var testID = document.getElementById("testID").value;
+    var testType = testID.substring(0, 3);
+    var sheetId = dict[testType];
+
     gapi.client.sheets.spreadsheets.values.get({
         spreadsheetId: sheetId,
-        range: 'Sheet1!B:B'
+        range: 'Sheet1!A:A'
     }).then((response) => {
         var result = response.result;
     for (var i = 0; i < result.values.length; ++i) {
@@ -127,3 +108,58 @@ function makeApiCall() {
     });
 });
 }
+
+function setSigninStatus(isSignedIn) {
+    var user = GoogleAuth.currentUser.get();
+    var isAuthorized = user.hasGrantedScopes(SCOPE);
+    if (isAuthorized) {
+        $('#sign-in-or-out-button').html('Sign out');
+        $('#revoke-access-button').css('display', 'inline-block');
+        $('#auth-status').html('You are currently signed in and have granted ' +
+            'access to this app.');
+    } else {
+        $('#sign-in-or-out-button').html('Sign In/Authorize');
+        $('#revoke-access-button').css('display', 'none');
+        $('#auth-status').html('You have not authorized this app or you are ' +
+            'signed out.');
+    }
+}
+$(document).ready(function() {
+    $("#submit").click(function() {
+        console.log("hello");
+        makeApiCall();
+    });
+});
+
+function updateSigninStatus(isSignedIn) {
+    setSigninStatus();
+}
+
+
+$(document).ready(function() {
+    $("#next").click(function() {
+        scanner.stop();
+        document.getElementById("selfie").style.display = 'none';
+        document.getElementById("qID");
+
+        var testID = document.getElementById("testID").value;
+        var testType = testID.substring(0, 3);
+        document.getElementById("testID").style.display = 'none';
+
+        if (testType === "IND") {
+            document.getElementById("student1").style.display = 'block';
+        } else if (testType === "ENV" || testType === "HUM" || testType === "COO") {
+            document.getElementById("student1").style.display = 'block';
+            document.getElementById("student2").style.display = 'block';
+        } else if (testType === "Team Round") {
+            document.getElementById("schoolID").style.display = 'block';
+        } else {
+            console.log("Unhandled Exception!");
+        }
+        document.getElementById("schoolID").style.display = 'block';
+        document.getElementById("q").style.display = 'block';
+        document.getElementById("next").style.display = 'none';
+        document.getElementById("back").style.display = 'inline-block';
+        document.getElementById("submit").style.display = 'inline-block';
+    });
+});

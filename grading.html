@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <head>
-    <meta charset="utf-8" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>WUCT Grading</title>
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style type="text/css">
         body{
             text-align: center;
@@ -49,6 +49,34 @@
             height: 32.75vw;
             padding: 10px;
         }
+        #test {
+            display: none;
+        }
+        #schoolID {
+            display: none;
+        }
+        #student1 {
+            display: none;
+        }
+        #student2 {
+            display: none;
+        }
+
+        #submit {
+            display: none;
+        }
+        #back {
+            display: none;
+        }
+        #selfie {
+            display: block;
+        }
+        #q {
+            display: none;
+        }
+        #sc {
+            display: none;
+        }
 
     </style>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
@@ -59,10 +87,13 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+
+    </script>
 </head>
 <body>
 
-    <script>
+    <script type="text/javascript">
         var GoogleAuth;
         var SCOPE = 'https://www.googleapis.com/auth/spreadsheets';
         function handleClientLoad() {
@@ -121,56 +152,188 @@
 
         function makeApiCall() {
             var dict = {
-                "Individual Exam": '1R0eKhhC3YMptbfDYWKf_Gv9FzlJC-ms8c_k1telL4Zc',
-                "Topics Exam": '12A5emA5i8z3rcDXPjbXa8LTJ3fYge3yCgSEBb0VkYoM'
+                "IND": '300997083',
+                "ENV": '12A5emA5i8z3rcDXPjbXa8LTJ3fYge3yCgSEBb0VkYoM',
+                "HUM": '12A5emA5i8z3rcDXPjbXa8LTJ3fYge3yCgSEBb0VkYoM',
+                "COO": '12A5emA5i8z3rcDXPjbXa8LTJ3fYge3yCgSEBb0VkYoM',
+                "TEA": '12A5emA5i8z3rcDXPjbXa8LTJ3fYge3yCgSEBb0VkYoM'
             };
-            var e = document.getElementById("test");
-            var t = e.options[e.selectedIndex].text;
-            // findStudent(t);
-            var studentIndex;
-            var sID = document.getElementById("sID").value;
-            var sheetId = dict[t];
+            var spSheetId = '1i4p_dL0yv_HJsQKiWXb4WRHaWjDtzRJ7iPVrnXOMoy8';
+            var testID = document.getElementById("testID").value;
+            var testType = testID.substring(0, 3);
+            // var shId = dict[testType];
+            // console.log(sheetId);
+            var examIndex = -1;
+
             gapi.client.sheets.spreadsheets.values.get({
-                spreadsheetId: sheetId,
-                range: 'Sheet1!B:B'
+                spreadsheetId: spSheetId,
+                // sheetId: shId,
+                range: testType  + '!A:A'
             }).then((response) => {
+
                 var result = response.result;
-            for (var i = 0; i < result.values.length; ++i) {
-                if (result.values[i] == sID) {
-                    studentIndex = i + 1;
-                    break;
+                for (var i = 0; i < result.values.length; ++i) {
+                    if (result.values[i] == testID) {
+                        examIndex = i + 1;
+                        break;
+                    }
                 }
-            }
-            var score = document.getElementById("q1").value;
-            var params = {
-                // The ID of the spreadsheet to update.
-                spreadsheetId: sheetId,  // TODO: Update placeholder value.
+                console.log(examIndex);
+                if (examIndex == -1) {
+                    console.log("Index DNE");
+                    return;
+                }
+                var schoolId = document.getElementById("schoolID-input").value;
+                var e = document.getElementById("qID");
+                var qId = parseInt(e.options[e.selectedIndex].value);
 
-                // The A1 notation of the values to update.
-                range: 'Sheet1!C' + studentIndex + ':C' + studentIndex,  // TODO: Update placeholder value.
+                var col = 'D';
+                var scoreDict = [
+                  'B', 'C', 'D', 'E', 'F', 'G', 'H'
+                ];
+                var schoolCol  = 'B';
+                if (testType === 'IND') {
+                    schoolCol = 'C';
+                    col = scoreDict[qId + 1];
+                }
+                else if (testType === 'ENV' || testType === 'HUM' || testType === 'COO') {
+                    schoolCol = 'D';
+                    col = scoreDict[qId + 2];
+                } else {
+                    schoolCol = 'B';
+                    col = scoreDict[qId];
+                }
 
-                // How the input data should be interpreted.
-                valueInputOption: 'RAW',  // TODO: Update placeholder value.
-            };
+                console.log(col);
 
-            var valueRangeBody = {
-                "values": [
-                    [
-                        score
-                    ],
-                ]
-                // TODO: Add desired properties to the request body. All existing properties
-                // will be replaced.
-            };
+                var params = {
+                    // The ID of the spreadsheet to update.
+                    spreadsheetId: spSheetId,  // TODO: Update placeholder value.
 
-            var request = gapi.client.sheets.spreadsheets.values.update(params, valueRangeBody);
-            request.then(function(response) {
-                // TODO: Change code below to process the `response` object:
-                console.log(response.result);
-            }, function(reason) {
-                console.error('error: ' + reason.result.error.message);
+                    // sheetId: shId,
+                    // The A1 notation of the values to update.
+                    range: testType + "!" + schoolCol + examIndex + ':' + schoolCol + examIndex,  // TODO: Update placeholder value.
+
+                    // How the input data should be interpreted.
+                    valueInputOption: 'RAW',  // TODO: Update placeholder value.
+                };
+
+                var valueRangeBody = {
+                    "values": [
+                        [
+                            schoolId
+                        ],
+                    ]
+                    // TODO: Add desired properties to the request body. All existing properties
+                    // will be replaced.
+                };
+
+                var request = gapi.client.sheets.spreadsheets.values.update(params, valueRangeBody);
+                request.then(function(response) {
+                    // TODO: Change code below to process the `response` object:
+                    console.log(response.result);
+                }, function(reason) {
+                    console.error('error: ' + reason.result.error.message);
+                });
+
+                var score = parseInt(document.getElementById("score").value);
+                var params = {
+                    // The ID of the spreadsheet to update.
+                    spreadsheetId: spSheetId,  // TODO: Update placeholder value.
+
+                    // sheetId: shId,
+                    // The A1 notation of the values to update.
+                    range: testType + "!" + col + examIndex + ':' + col + examIndex,  // TODO: Update placeholder value.
+
+                    // How the input data should be interpreted.
+                    valueInputOption: 'RAW',  // TODO: Update placeholder value.
+                };
+
+                var valueRangeBody = {
+                    "values": [
+                        [
+                            score
+                        ],
+                    ]
+                    // TODO: Add desired properties to the request body. All existing properties
+                    // will be replaced.
+                };
+
+                var request = gapi.client.sheets.spreadsheets.values.update(params, valueRangeBody);
+                request.then(function(response) {
+                    // TODO: Change code below to process the `response` object:
+                    console.log(response.result);
+                }, function(reason) {
+                    console.error('error: ' + reason.result.error.message);
+                });
+
+                var studentId1 = document.getElementById("studentID1").value;
+                var studentId2 = document.getElementById("studentID2").value;
+
+                if (testType !== 'TEA') {
+                    var params = {
+                        // The ID of the spreadsheet to update.
+                        spreadsheetId: spSheetId,  // TODO: Update placeholder value.
+
+                        // sheetId: shId,
+                        // The A1 notation of the values to update.
+                        range: testType + '!B' + examIndex + ':B'  + examIndex,  // TODO: Update placeholder value.
+
+                        // How the input data should be interpreted.
+                        valueInputOption: 'RAW',  // TODO: Update placeholder value.
+                    };
+
+                    var valueRangeBody = {
+                        "values": [
+                            [
+                                studentId1
+                            ],
+                        ]
+                        // TODO: Add desired properties to the request body. All existing properties
+                        // will be replaced.
+                    };
+
+                    var request = gapi.client.sheets.spreadsheets.values.update(params, valueRangeBody);
+                    request.then(function(response) {
+                        // TODO: Change code below to process the `response` object:
+                        console.log(response.result);
+                    }, function(reason) {
+                        console.error('error: ' + reason.result.error.message);
+                    });
+                    if (testType !== 'IND') {
+                        var params = {
+                            // The ID of the spreadsheet to update.
+                            spreadsheetId: spSheetId,  // TODO: Update placeholder value.
+
+                            // sheetId: shId,
+                            // The A1 notation of the values to update.
+                            range: testType + '!C' + examIndex + ':C' + examIndex,  // TODO: Update placeholder value.
+
+                            // How the input data should be interpreted.
+                            valueInputOption: 'RAW',  // TODO: Update placeholder value.
+                        };
+
+                        var valueRangeBody = {
+                            "values": [
+                                [
+                                    studentId2
+                                ],
+                            ]
+                            // TODO: Add desired properties to the request body. All existing properties
+                            // will be replaced.
+                        };
+
+                        var request = gapi.client.sheets.spreadsheets.values.update(params, valueRangeBody);
+                        request.then(function(response) {
+                            // TODO: Change code below to process the `response` object:
+                            console.log(response.result);
+                        }, function(reason) {
+                            console.error('error: ' + reason.result.error.message);
+                        });
+                    }
+                }
+
             });
-        });
         }
 
         function setSigninStatus(isSignedIn) {
@@ -190,25 +353,115 @@
         }
         $(document).ready(function() {
             $("#submit").click(function() {
-                console.log("hello");
                 makeApiCall();
+                scanner.start();
+                document.getElementById("selfie").style.display = 'inline';
+                document.getElementById("qID");
+
+                var testID = document.getElementById("testID").value;
+                var testType = testID.substring(0, 3);
+                document.getElementById("testID").style.display = 'block';
+
+                if (testType === "IND") {
+                    document.getElementById("student1").style.display = 'none';
+                } else if (testType === "ENV" || testType === "HUM" || testType === "COO") {
+                    document.getElementById("student1").style.display = 'none';
+                    document.getElementById("student2").style.display = 'none';
+                } else if (testType === "Team Round") {
+                    document.getElementById("schoolID").style.display = 'block';
+                } else {
+                    console.log("Unhandled Exception!");
+                }
+                document.getElementById("schoolID").style.display = 'none';
+                document.getElementById("q").style.display = 'none';
+                document.getElementById("sc").style.display = 'none';
+                document.getElementById("next").style.display = 'inline';
+                document.getElementById("back").style.display = 'none';
+                document.getElementById("submit").style.display = 'none';
             });
         });
 
         function updateSigninStatus(isSignedIn) {
             setSigninStatus();
         }
-    </script>
-    <a target="_blank" href="https://sites.google.com/view/gradingtoolprivacypolicy/home">
-        <button id="privacy-policy"
-                style="margin-left: 25px">Privacy Policy</button>
-    </a>
-    <button id="sign-in-or-out-button"
-            style="margin-left: 25px">Sign In/Authorize</button>
-    <button id="revoke-access-button"
-            style="display: none; margin-left: 25px">Revoke access</button>
 
-    <div id="auth-status" style="display: inline; padding-left: 25px"></div><hr>
+
+        $(document).ready(function() {
+            $("#next").click(function() {
+                scanner.stop();
+                document.getElementById("selfie").style.display = 'none';
+                document.getElementById("qID");
+
+                var testID = document.getElementById("testID").value;
+                var testType = testID.substring(0, 3);
+                document.getElementById("testID").style.display = 'none';
+
+                if (testType === "IND") {
+                    document.getElementById("student1").style.display = 'block';
+                } else if (testType === "ENV" || testType === "HUM" || testType === "COO") {
+                    document.getElementById("student1").style.display = 'block';
+                    document.getElementById("student2").style.display = 'block';
+                } else if (testType === "Team Round") {
+                    document.getElementById("schoolID").style.display = 'block';
+                } else {
+                    console.log("Unhandled Exception!");
+                }
+                document.getElementById("schoolID").style.display = 'block';
+                document.getElementById("q").style.display = 'block';
+                document.getElementById("sc").style.display = 'block';
+                document.getElementById("next").style.display = 'none';
+                document.getElementById("back").style.display = 'inline-block';
+                document.getElementById("submit").style.display = 'inline-block';
+            });
+        });
+
+        $(document).ready(function() {
+            $("#back").click(function() {
+                scanner.start();
+                document.getElementById("selfie").style.display = 'inline';
+                document.getElementById("qID");
+
+                var testID = document.getElementById("testID").value;
+                var testType = testID.substring(0, 3);
+                document.getElementById("testID").style.display = 'block';
+
+                if (testType === "IND") {
+                    document.getElementById("student1").style.display = 'none';
+                } else if (testType === "ENV" || testType === "HUM" || testType === "COO") {
+                    document.getElementById("student1").style.display = 'none';
+                    document.getElementById("student2").style.display = 'none';
+                } else if (testType === "Team Round") {
+                    document.getElementById("schoolID").style.display = 'block';
+                } else {
+                    console.log("Unhandled Exception!");
+                }
+                document.getElementById("schoolID").style.display = 'none';
+                document.getElementById("q").style.display = 'none';
+                document.getElementById("sc").style.display = 'none';
+                document.getElementById("next").style.display = 'inline';
+                document.getElementById("back").style.display = 'none';
+                document.getElementById("submit").style.display = 'none';
+            });
+        });
+    </script>
+    <!--<div>-->
+        <!--<a style="display: inline-block" target="_blank" href="https://sites.google.com/view/gradingtoolprivacypolicy/home">-->
+            <!--<button id="privacy-policy"-->
+                    <!--style="margin-left: 25px">Privacy Policy</button>-->
+        <!--</a>-->
+        <!--<button style="display: inline-block" id="sign-in-or-out-button"-->
+                <!--style="margin-left: 25px">Sign In/Authorize</button>-->
+        <!--<button style="display: inline-block" id="revoke-access-button"-->
+                <!--style="display: none; margin-left: 25px">Revoke access</button>-->
+    <!--</div>-->
+
+    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+        <button type="button" id="privacy-policy" class="btn btn-secondary">Privacy Policy</button>
+        <button type="button" id="sign-in-or-out-button" class="btn btn-secondary">Sign In/Authorize</button>
+        <button type="button" id="revoke-access-button" class="btn btn-secondary">Revoke access</button>
+    </div>
+
+    <div id="auth-status" style="display: block; padding-left: 25px; font-size: small;"></div><hr>
 
     <div>
         <div>
@@ -228,7 +481,31 @@
             scanner.addListener('scan', function (content) {
                 console.log(content);
                 if (scanner.scan() != null) {
-                    document.getElementById("test").value = content;
+                    document.getElementById("testID").value = content;
+                    scanner.stop();
+                    document.getElementById("selfie").style.display = 'none';
+                    document.getElementById("qID");
+
+                    var testID = document.getElementById("testID").value;
+                    var testType = testID.substring(0, 3);
+                    document.getElementById("testID").style.display = 'none';
+
+                    if (testType === "IND") {
+                        document.getElementById("student1").style.display = 'block';
+                    } else if (testType === "ENV" || testType === "HUM" || testType === "COO") {
+                        document.getElementById("student1").style.display = 'block';
+                        document.getElementById("student2").style.display = 'block';
+                    } else if (testType === "Team Round") {
+                        document.getElementById("schoolID").style.display = 'block';
+                    } else {
+                        console.log("Unhandled Exception!");
+                    }
+                    document.getElementById("schoolID").style.display = 'block';
+                    document.getElementById("q").style.display = 'block';
+                    document.getElementById("sc").style.display = 'block';
+                    document.getElementById("next").style.display = 'none';
+                    document.getElementById("back").style.display = 'inline-block';
+                    document.getElementById("submit").style.display = 'inline-block';
                 }
             });
             Instascan.Camera.getCameras().then(function (cameras) {
@@ -245,23 +522,70 @@
                 console.error(e);
             });
         </script>
-        <br>
+        <!--<br>-->
         <div class="form-group">
             <!--<label>Test Type:</label>-->
             <form>
-                <select id="test" class="form-control buttom">
-                    <option value="">Select Exam Type</option>
-                    <option value="Individual">Individual Exam</option>
-                    <option value="Topics">Topics Exam</option>
-                </select>
+                <!--<select id="test" class="custom-select">-->
+                    <!--<option value="">Select Exam Type</option>-->
+                    <!--<option value="Individual">Individual Exam</option>-->
+                    <!--<option value="Environmental">Chemistry of Environmental Science</option>-->
+                    <!--<option value="Human">Chemistry of the Human Body</option>-->
+                    <!--<option value="Cooking">Chemistry of Cooking</option>-->
+                    <!--<option value="Team">Team Round</option>-->
+                <!--</select>-->
+                <!--<br id="testBreak" class="break">-->
+                <div>
+                    <input type="text" class="form-control" id="testID" placeholder="Test ID"/>
+                </div>
+                <!--<br class="break" id="testIDBreak">-->
+                <!--<div id="schoolDiv">-->
+                    <!--<label>School ID:</label>-->
+                    <div id="schoolID">
+                        <label>School ID:</label>
+                        <input type="text" class="form-control" id="schoolID-input" placeholder="School ID"/>
+                    </div>
+                    <!--<br class="break" id="schoolBreak">-->
+                <!--</div>-->
+                <!--<div id="pairStudentDiv">-->
+
+                <div id="student1">
+                    <label>Student 1 ID:</label>
+                    <input type="text" class="form-control" id="studentID1" placeholder="Student 1 ID"/>
+                </div>
+
+                <div id="student2">
+                    <label>Student 2 ID:</label>
+                    <input type="text" class="form-control" id="studentID2" placeholder="Student 2 ID"/>
+                </div>
+                    <!--<br class="break" id="studentTwoBreak">-->
+                    <!--<br class="break" id="scoreBreak">-->
+                <div id="q">
+                    <label>Question #:</label>
+                    <select id="qID" class="custom-select">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <!--<option value="5">5</option>-->
+                        <!--<option value="6">6</option>-->
+                        <!--<option value="7">7</option>-->
+                        <!--<option value="8">8</option>-->
+                    </select>
+                </div>
+                <!--<br class="break" id="scoreBreak">-->
+
+                <div id="sc">
+                    <label>Score:</label>
+                    <input type="text" class="form-control" id="score" placeholder="Score"/>
+                </div>
+
                 <br>
-                <!--<label>Student ID:</label>-->
-                <input type="text" class="form-control" id="sID" placeholder="Student ID"/>
-                <br>
-                <!--<label>Score:</label>-->
-                <input type="text" class="form-control" id="q1" placeholder="Score"/>
-                <br>
-                <button class="btn btn-secondary" type="button" id="submit">Submit</button>
+                <div>
+                    <button class="btn btn-secondary" type="button" id="next">Next</button>
+                    <button class="btn btn-secondary" type="button" id="back">Back</button>
+                    <button class="btn btn-secondary" type="button" id="submit">Submit</button>
+                </div>
             </form>
         </div>
     </div>
@@ -272,5 +596,8 @@
         </script>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
