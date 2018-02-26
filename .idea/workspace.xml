@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e40ca20e-4ba6-48e0-bf50-fd2a0f54fdf6" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/camera.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/bonds.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/privacy_policy.html" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/grading.html" afterPath="$PROJECT_DIR$/grading.html" />
-      <change beforePath="$PROJECT_DIR$/js/spreadsheet.js" afterPath="$PROJECT_DIR$/js/spreadsheet.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,11 +16,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="grading.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="grading.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/grading.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="727">
-              <caret line="379" column="73" lean-forward="false" selection-start-line="379" selection-start-column="73" selection-end-line="379" selection-end-column="73" />
+            <state relative-caret-position="480">
+              <caret line="458" column="37" lean-forward="false" selection-start-line="458" selection-start-column="37" selection-end-line="458" selection-end-column="37" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#body#0;n#!!top" expanded="true" />
                 <element signature="n#div#1;n#div#2;n#body#0;n#!!top" expanded="false" />
@@ -30,34 +30,29 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="camera.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/camera.html">
+      <file leaf-file-name="bonds.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bonds.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="32" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="spreadsheet.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/spreadsheet.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="17" column="19" lean-forward="false" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="58" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="scratch.js" pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="24">
-              <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+            <state relative-caret-position="637">
+              <caret line="87" column="199" lean-forward="true" selection-start-line="85" selection-start-column="0" selection-end-line="87" selection-end-column="199" />
               <folding>
-                <element signature="n#!!doc" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="privacy_policy.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/privacy_policy.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="720">
+              <caret line="30" column="25" lean-forward="false" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -132,7 +127,9 @@
         <option value="$PROJECT_DIR$/js/spreadsheet.js" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.js" />
         <option value="$PROJECT_DIR$/camera.html" />
+        <option value="$PROJECT_DIR$/bonds.html" />
         <option value="$PROJECT_DIR$/grading.html" />
+        <option value="$PROJECT_DIR$/privacy_policy.html" />
       </list>
     </option>
   </component>
@@ -167,7 +164,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -180,7 +177,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -329,12 +326,15 @@
       <workItem from="1519459835710" duration="1320000" />
       <workItem from="1519465769895" duration="2588000" />
       <workItem from="1519469673611" duration="2107000" />
-      <workItem from="1519506045202" duration="2539000" />
+      <workItem from="1519506045202" duration="2819000" />
+      <workItem from="1519509013759" duration="3912000" />
+      <workItem from="1519545529900" duration="60000" />
+      <workItem from="1519649938309" duration="460000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89696000" />
+    <option name="totallyTimeSpent" value="94408000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -375,21 +375,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/projects.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1584">
-          <caret line="66" column="26" lean-forward="false" selection-start-line="66" selection-start-column="26" selection-end-line="66" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/spreadsheet.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2352">
-          <caret line="98" column="52" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="128" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/grading.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1824">
@@ -434,7 +419,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2352">
           <caret line="98" column="52" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="128" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -487,7 +471,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1320">
           <caret line="55" column="0" lean-forward="true" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -710,21 +693,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/spreadsheet.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="17" column="19" lean-forward="false" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="24">
           <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/spreadsheet.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="17" column="19" lean-forward="false" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="58" />
         </state>
       </provider>
     </entry>
@@ -732,19 +711,41 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="32" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/grading.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="727">
-          <caret line="379" column="73" lean-forward="false" selection-start-line="379" selection-start-column="73" selection-end-line="379" selection-end-column="73" />
+        <state relative-caret-position="480">
+          <caret line="458" column="37" lean-forward="false" selection-start-line="458" selection-start-column="37" selection-end-line="458" selection-end-column="37" />
           <folding>
             <element signature="n#style#0;n#div#1;n#body#0;n#!!top" expanded="true" />
             <element signature="n#div#1;n#div#2;n#body#0;n#!!top" expanded="false" />
             <element signature="n#script#2;n#body#0;n#!!top" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bonds.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="637">
+          <caret line="87" column="199" lean-forward="true" selection-start-line="85" selection-start-column="0" selection-end-line="87" selection-end-column="199" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/privacy_policy.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="720">
+          <caret line="30" column="25" lean-forward="false" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>
