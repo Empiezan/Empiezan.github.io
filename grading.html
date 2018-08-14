@@ -351,6 +351,7 @@
                     'signed out.');
             }
         }
+
         $(document).ready(function() {
             $("#submit").click(function() {
                 makeApiCall();
@@ -456,19 +457,38 @@
     <!--</div>-->
 
     <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-        <a href="/privacy_policy.html">
-            <button type="button" id="privacy-policy" class="btn btn-secondary">Privacy Policy</button>
-        </a>
+
+        <button type="button" id="privacy-policy" class="btn btn-secondary">
+            <a href="/privacy_policy.html" style="color: white;">
+            Privacy Policy
+            </a>
+        </button>
+
         <button type="button" id="sign-in-or-out-button" class="btn btn-secondary">Sign In/Authorize</button>
         <button type="button" id="revoke-access-button" class="btn btn-secondary">Revoke access</button>
     </div>
 
-    <div id="auth-status" style="display: block; padding-left: 25px; font-size: small;"></div><hr>
+    <div id="auth-status" style="display: block; padding-left: 25px; font-size: small;"></div>
+
+    <br>
+    <div class="form-group">
+        <!--<label for="examSelect">Grading Form Type</label>-->
+        <select class="form-control" id="examSelect">
+            <option default>Exam Grading</option>
+            <option>Exam Matching</option>
+        </select>
+    </div>
+
+    <hr>
 
     <div>
-        <div>
-            <h1><b>Grading Form</b></h1>
-        </div>
+        <!--<div>-->
+            <!--<h1><b>Grading Form</b></h1>-->
+        <!--</div>-->
+
+        <!-- Large button groups (default and split) -->
+
+
         <div class="input-group" id="selfie">
             <video id="preview"></video>
         </div>
@@ -478,7 +498,7 @@
                 video: document.getElementById('preview'),
                 continuous: true,
                 mirror: true,
-                refractoryPeriod: 500
+                refractoryPeriod: 250
             });
             scanner.addListener('scan', function (content) {
                 console.log(content);

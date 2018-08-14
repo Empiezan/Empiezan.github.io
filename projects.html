@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>Projects</title>
 
     <style>
@@ -22,22 +24,19 @@
         h1 {
             text-align: center;
         }
+        nav{
+            font-size: medium;
+            text-align: center;
+        }
     </style>
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
-
     <!-- Latest compiled JavaScript -->
     <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 <body>
 <nav aria-label="breadcrumb">
@@ -47,7 +46,7 @@
     </ol>
 </nav>
 
-<h1>
+<h1 style="text-align: center">
     <b>
         Projects
     </b>
@@ -55,8 +54,8 @@
 <br>
 <div class="flex-container">
 
-    <div class="row">
-        <div class="col-sm-6">
+    <div class="card-deck">
+        <!--<div class="col-sm-6">-->
             <div class="card" style="width: 18rem;">
                 <img class="card-img-top" src="WUCT%20Logo.PNG" alt="Card image cap">
                 <div class="card-body">
@@ -67,10 +66,11 @@
                         we receive on competition day.
                     </p>
                     <a href="/grading.html" class="btn btn-primary">Check it out!</a>
+                    <br><br>
                 </div>
             </div>
-        </div>
-        <div class="col-sm-6">
+        <!--</div>-->
+        <!--<div class="col-sm-6">-->
             <div class="card" style="width: 18rem;">
                 <img class="card-img-top" src="WUCT%20Logo.PNG" alt="Card image cap">
                 <div class="card-body">
@@ -79,11 +79,28 @@
                         A tool for WUCT proctors to perform live scoring for the Breaking Bonds round of the
                         Washington University Chemistry Tournament.
                     </p>
-                    <br><br>
+                    <br>
                     <a href="#" class="btn btn-primary">Under Construction</a>
+                    <br><br>
                 </div>
             </div>
-        </div>
+        <!--</div>-->
+        <!--<div class="col-sm-6">-->
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="cookies.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Recipino</h5>
+                    <p class="card-text">
+                        Recipino is an Arduino solution that makes reading online recipes
+                        easy and keeps your expensive devices such as your phone out of the
+                        kitchen.
+                    </p>
+                    <br>
+                    <a href="#" class="btn btn-primary">Under Construction</a>
+                    <br><br>
+                </div>
+            </div>
+        <!--</div>-->
     </div>
 
     <!--<div class="card" style="width: 18rem;">-->
@@ -96,6 +113,8 @@
     <!--</div>-->
 </div>
 
-
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
